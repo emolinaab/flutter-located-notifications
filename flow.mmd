@@ -1,0 +1,8 @@
+graph TB
+     subgraph App
+        od>Push Notification]-- app opens --> ro
+        ro(Notification Event Triggers) -->  di{Is the user<br> in the defined <br> location}
+        di-->|Yes| ro2(Show Notification)
+        di-->|No| ro3(Do nothing)
+    end
+

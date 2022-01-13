@@ -1,0 +1,13 @@
+sequenceDiagram
+    participant a as Curl - Postman 
+    participant aa as FCM
+    participant c as App
+    c->>aa: Subscribes to Topic
+    a->>aa: Send notification Data
+    aa->>c: Silent Push Notification
+    c-->>c: Process current location
+    c-->>c: Show Notification
+
+    
+    
+    
