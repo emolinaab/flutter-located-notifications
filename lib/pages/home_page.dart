@@ -9,8 +9,8 @@ class HomePage extends StatefulWidget {
     required this.title,
   }) : super(key: key);
 
-  final String title;
   final NotificationsBloc notificationsBloc;
+  final String title;
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -22,11 +22,11 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    widget.notificationsBloc.notificationStream.listen(
+    NotificationsBloc.notificationStream.listen(
       (RemoteMessage? message) {
         setState(() {
-          _title = message?.notification?.title ?? '';
-          _body = message?.notification?.body ?? '';
+          _title = message?.data['title'] ?? '';
+          _body = message?.data['body'] ?? '';
         });
       },
     );
