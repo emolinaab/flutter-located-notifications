@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -80,6 +81,11 @@ class NotificationsBloc {
           channel.name,
           channelDescription: channel.description,
         ),
+        iOS: const IOSNotificationDetails(
+          presentAlert: true,
+          presentBadge: true,
+          presentSound: true,
+        ),
       ),
     );
   }
@@ -89,7 +95,7 @@ class NotificationsBloc {
       options: DefaultFirebaseOptions.currentPlatform,
     );
     _messaging = FirebaseMessaging.instance;
-
+    log(await _messaging.getToken() ?? '');
     await _requestPermission();
     FirebaseMessaging.instance.subscribeToTopic('locatednotification');
 
